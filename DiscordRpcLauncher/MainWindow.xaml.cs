@@ -72,9 +72,12 @@ namespace DiscordRpcLauncher
                 txtBoxClientID.Text = configs[0];
                 txtBoxDetails.Text = configs[1];
                 txtBoxState.Text = configs[2];
-                ImageBrush img = new ImageBrush();
-                img.ImageSource = new BitmapImage(new Uri(configs[3]));
-                ImageBorder.Background = img;
+                if(configs[3] != "")
+                {
+                    ImageBrush img = new ImageBrush();
+                    img.ImageSource = new BitmapImage(new Uri(configs[3]));
+                    ImageBorder.Background = img;
+                }
             }
         }
 
