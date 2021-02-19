@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace DiscordRpcLauncher
 {
@@ -34,10 +35,6 @@ namespace DiscordRpcLauncher
             this.Title = "Discord RPC Launcher";
 
             notifyIcon = new NotifyIcon();
-            //notifyIcon.Click += new EventHandler((sender, e) =>
-            //{
-            //    ShowQuickLaunchMenu();
-            //});
             notifyIcon.DoubleClick += new EventHandler((sender, e) =>
             {
                 if(IsHide)
@@ -62,6 +59,23 @@ namespace DiscordRpcLauncher
                     this.Close();
                 }))
             });
+
+            string[] configs = new string[4];
+
+            if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\config.txt"))
+            {
+                configs = File.ReadAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt").ToList().ConvertAll(x => x.Split('=')[1]).ToArray();
+            }
+
+            if(configs.Length == 4)
+            {
+                txtBoxClientID.Text = configs[0];
+                txtBoxDetails.Text = configs[1];
+                txtBoxState.Text = configs[2];
+                ImageBrush img = new ImageBrush();
+                img.ImageSource = new BitmapImage(new Uri(configs[3]));
+                ImageBorder.Background = img;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -90,6 +104,8 @@ namespace DiscordRpcLauncher
             DragMove();
         }
 
+        private string imgPath = "";
+
         private void ImageBorder_MouseUp(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
@@ -98,6 +114,7 @@ namespace DiscordRpcLauncher
 
             if(fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                imgPath = fd.FileName;
                 ImageBrush img = new ImageBrush();
                 img.ImageSource = new BitmapImage(new Uri(fd.FileName));
                 ImageBorder.Background = img;
@@ -108,7 +125,7 @@ namespace DiscordRpcLauncher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            File.WriteAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt", new string[] { "CLIENT_ID=" + txtBoxClientID.Text, "DETAILS=" + txtBoxDetails, "STATE=" + txtBoxState, "IMAGE_SOURCE=" + imgPath });
         }
     }
 }
