@@ -45,7 +45,7 @@
                 <TextBox x:Name="txtBoxState" Width="200" Height="35" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Background="#FFEEEEEE" materialDesign:HintAssist.Hint="State" SelectionBrush="#FF878787" VerticalAlignment="Top" Margin="200, 165, 0, 0" FontSize="10"></TextBox>
 
                 <Border Width="100" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 15, 17" Background="#FF292828" />
-                <Button Width="100" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 20, 20" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Background="#FF19A003" BorderBrush="{x:Null}" Foreground="White">Save</Button>
+                <Button Width="100" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 20, 20" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Background="#FF19A003" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click">Save</Button>
             </Grid>
         </Border>
     </Grid>

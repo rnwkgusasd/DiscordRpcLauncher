@@ -105,5 +105,10 @@ namespace DiscordRpcLauncher
                 ImageGrid.Visibility  = Visibility.Hidden;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
