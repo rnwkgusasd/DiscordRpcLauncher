@@ -124,7 +124,7 @@ namespace DiscordRpcLauncher
                 img.ImageSource = new BitmapImage(new Uri(fd.FileName));
                 ImageBorder.Background = img;
 
-                ImageGrid.Visibility  = Visibility.Hidden;
+                ImageGrid.Visibility = Visibility.Hidden;
             }
         }
 
