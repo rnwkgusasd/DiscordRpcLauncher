@@ -16,7 +16,11 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid x:Name="BackGrid" Background="#FF252525">
-        <Grid x:Name="WindowMoveGrid" MouseDown="Grid_MouseDown" Height="40" VerticalAlignment="Top" Background="#FF252525" />
+        <Grid x:Name="WindowMoveGrid" MouseDown="Grid_MouseDown" Height="40" VerticalAlignment="Top" Background="#FF252525">
+            <Button BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="20" Height="20" BorderBrush="#FFAA0000" Background="#FFF30000" Foreground="White" FontSize="10" Click="Button_Click_1">
+                X
+            </Button>
+        </Grid>
         <Grid Height="370" Width="175" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0, 0, 0, 20">
             <Grid.Background>
                 <ImageBrush Stretch="None" ImageSource="discordImage_127.png"/>

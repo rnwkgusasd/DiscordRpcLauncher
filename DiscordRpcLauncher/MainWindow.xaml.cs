@@ -62,12 +62,14 @@ namespace DiscordRpcLauncher
 
             string[] configs = new string[4];
 
-            if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\config.txt"))
+            if (!File.Exists(System.Windows.Forms.Application.StartupPath + "\\config.txt"))
             {
-                configs = File.ReadAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt").ToList().ConvertAll(x => x.Split('=')[1]).ToArray();
+                File.WriteAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt", new string[] { "CLIENT_ID=", "DETAILS=", "STATE=", "IMAGE_SOURCE=" });
             }
 
-            if(configs.Length == 4)
+            configs = File.ReadAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt").ToList().ConvertAll(x => x.Split('=')[1]).ToArray();
+
+            if (configs.Length == 4)
             {
                 txtBoxClientID.Text = configs[0];
                 txtBoxDetails.Text = configs[1];
@@ -129,6 +131,11 @@ namespace DiscordRpcLauncher
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             File.WriteAllLines(System.Windows.Forms.Application.StartupPath + "\\config.txt", new string[] { "CLIENT_ID=" + txtBoxClientID.Text, "DETAILS=" + txtBoxDetails, "STATE=" + txtBoxState, "IMAGE_SOURCE=" + imgPath });
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
